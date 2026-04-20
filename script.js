@@ -373,7 +373,7 @@ if (reduceMotion) {
   revealItems.forEach((item) => item.classList.add("is-visible"));
 } else {
   const horizontalRevealSelector =
-    ".signal-card, .partner-pill, .case-proof-card, .service-item, .case-article, .contact-card";
+    ".signal-card, .partner-feature-card, .case-proof-card, .service-item, .case-article, .contact-card";
 
   revealItems.forEach((item) => {
     const revealSiblings = [...(item.parentElement?.children || [])].filter((node) =>
