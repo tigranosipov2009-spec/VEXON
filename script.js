@@ -3,25 +3,25 @@ const services = [
     href: "web-development.html",
     key: "web-dev",
     title: "Разработка сайтов",
-    description: "Сайты под заявку для услуг, ремонта, beauty, обучения и экспертов."
+    description: "Сайты под заявки для услуг, локального бизнеса, экспертов и сервисных компаний."
   },
   {
     href: "redesign.html",
     key: "redesign",
     title: "Редизайн и доработка",
-    description: "Обновляем структуру, визуальный слой, мобильную версию и конверсию."
+    description: "Обновляем структуру, визуальный слой, мобильную версию и сценарий обращения."
   },
   {
     href: "seo-structure.html",
     key: "seo",
     title: "SEO-подготовка",
-    description: "Закладываем семантику, структуру страниц и контентную основу до запуска."
+    description: "Закладываем семантику, карту страниц и контентную логику до запуска."
   },
   {
     href: "yandex-direct.html",
     key: "direct",
     title: "Яндекс Директ",
-    description: "Запуск, аналитика, тест гипотез и оптимизация рекламы под лиды."
+    description: "Запуск, аналитика, тест гипотез и оптимизация рекламы под заявки."
   },
   {
     href: "growth.html",
@@ -117,7 +117,7 @@ const createHeader = () => `
         <span>звонок или WhatsApp</span>
       </a>
 
-      <a class="button header-cta" href="contacts.html#brief">Получить план запуска</a>
+      <a class="button header-cta" href="contacts.html#brief">Получить разбор</a>
 
       <button
         class="nav-toggle"
@@ -160,7 +160,7 @@ const createHeader = () => `
             <a class="mobile-contact-link" href="${TELEGRAM_LINK}" target="_blank" rel="noreferrer">Telegram</a>
           </div>
 
-          <a class="button" href="contacts.html#brief">Получить план запуска</a>
+          <a class="button" href="contacts.html#brief">Получить разбор</a>
         </div>
       </div>
     </div>
@@ -225,9 +225,9 @@ const createMobileStickyCta = () => {
     <div class="mobile-sticky-cta">
       <div class="mobile-sticky-copy">
         <strong>${isHomePage ? "Нужен быстрый ориентир?" : "Нужен понятный следующий шаг?"}</strong>
-        <span>${isHomePage ? "Расчёт и план запуска без лишних созвонов" : "Короткий бриф и маршрут по проекту"}</span>
+        <span>${isHomePage ? "Расчёт и короткий разбор без лишних созвонов" : "Короткий бриф и маршрут по проекту"}</span>
       </div>
-      <a class="button" href="${isHomePage ? "#estimate" : "contacts.html#brief"}">${isHomePage ? "Рассчитать" : "Оставить бриф"}</a>
+      <a class="button" href="${isHomePage ? "#estimate" : "contacts.html#brief"}">${isHomePage ? "Рассчитать" : "Получить разбор"}</a>
     </div>
   `;
 };
@@ -373,7 +373,7 @@ if (reduceMotion) {
   revealItems.forEach((item) => item.classList.add("is-visible"));
 } else {
   const horizontalRevealSelector =
-    ".signal-card, .partner-feature-card, .case-proof-card, .service-item, .case-article, .contact-card";
+    ".signal-card, .case-proof-card, .service-item, .case-article, .contact-card, .case-card, .partner-stage-copy, .partner-stage-visual";
 
   revealItems.forEach((item) => {
     const revealSiblings = [...(item.parentElement?.children || [])].filter((node) =>
@@ -383,10 +383,10 @@ if (reduceMotion) {
     const isHorizontal = item.matches(horizontalRevealSelector);
     const xOffset = isHorizontal ? (revealIndex % 2 === 0 ? -28 : 28) : 0;
     const yOffset = isHorizontal
-      ? 16
+      ? 14
       : item.matches(".panel, .case-card, .quote-card, .faq-item, .focus-panel")
-        ? 34
-        : 24;
+        ? 32
+        : 22;
 
     item.style.setProperty("--reveal-delay", `${Math.min(revealIndex, 6) * 70}ms`);
     item.style.setProperty("--reveal-x", `${xOffset}px`);
@@ -414,18 +414,33 @@ if (reduceMotion) {
 }
 
 if (finePointer) {
-  document.querySelectorAll("[data-glow], .panel, .cta-band, .contact-widget").forEach((item) => {
+  document
+    .querySelectorAll("[data-glow], .panel, .cta-band, .contact-widget, .hero-grid, .page-hero-grid")
+    .forEach((item) => {
+      item.addEventListener("pointermove", (event) => {
+        const bounds = item.getBoundingClientRect();
+        const x = ((event.clientX - bounds.left) / bounds.width) * 100;
+        const y = ((event.clientY - bounds.top) / bounds.height) * 100;
+        item.style.setProperty("--pointer-x", `${x}%`);
+        item.style.setProperty("--pointer-y", `${y}%`);
+      });
+
+      item.addEventListener("pointerleave", () => {
+        item.style.setProperty("--pointer-x", "50%");
+        item.style.setProperty("--pointer-y", "50%");
+      });
+    });
+
+  document.querySelectorAll(".hero-grid").forEach((item) => {
     item.addEventListener("pointermove", (event) => {
       const bounds = item.getBoundingClientRect();
-      const x = ((event.clientX - bounds.left) / bounds.width) * 100;
-      const y = ((event.clientY - bounds.top) / bounds.height) * 100;
-      item.style.setProperty("--pointer-x", `${x}%`);
-      item.style.setProperty("--pointer-y", `${y}%`);
+      item.style.setProperty("--grid-x", `${event.clientX - bounds.left}px`);
+      item.style.setProperty("--grid-y", `${event.clientY - bounds.top}px`);
     });
 
     item.addEventListener("pointerleave", () => {
-      item.style.setProperty("--pointer-x", "50%");
-      item.style.setProperty("--pointer-y", "50%");
+      item.style.setProperty("--grid-x", "50%");
+      item.style.setProperty("--grid-y", "50%");
     });
   });
 }
@@ -480,25 +495,25 @@ if (estimatorElement) {
         price: 220000,
         minWeeks: 6,
         maxWeeks: 8,
-        focus: "Система посадочных под рост",
-        note: "Нужен, когда у бизнеса несколько услуг, направлений или районов и сайт должен масштабироваться вместе со спросом.",
+        focus: "Структура под несколько направлений",
+        note: "Хороший вариант, если у бизнеса несколько услуг, география или план на SEO-масштабирование.",
         items: [
-          "Карта посадочных под услуги, географию и сегменты спроса.",
-          "Архитектура под SEO-масштабирование и рекламные связки.",
-          "Чистый UI, формы и аналитика для дальнейшего роста."
+          "Карта сайта, приоритет страниц и сценарии переходов.",
+          "Отдельные офферы под услуги, сегменты и коммерческие вопросы.",
+          "Готовность к расширению через кейсы, SEO и новые посадочные."
         ]
       },
       redesign: {
-        label: "Редизайн / доработка",
+        label: "Редизайн и усиление текущего сайта",
         price: 110000,
         minWeeks: 3,
         maxWeeks: 4,
-        focus: "Усиление конверсии без старта с нуля",
-        note: "Рациональный сценарий, если база уже есть, но текущий сайт не доводит человека до заявки или выглядит слабо.",
+        focus: "Усиление конверсии без хаоса",
+        note: "Нужен, если база уже есть, но сайт выглядит слабо, плохо работает на mobile или не доводит до обращения.",
         items: [
-          "UX-аудит, перепаковка оффера и переработка ключевых экранов.",
-          "Чистка мобильной версии, форм и доверительных блоков.",
-          "Аккуратный front-end без хаотичной переделки всего проекта."
+          "UX-аудит и выявление точек потери доверия и лидов.",
+          "Обновление первого экрана, структуры, CTA и визуального слоя.",
+          "Аккуратная доработка без полной пересборки проекта."
         ]
       }
     },
@@ -506,48 +521,86 @@ if (estimatorElement) {
       site: {
         label: "Только сайт",
         price: 0,
-        weeks: 0,
-        focus: "Чистый запуск без лишнего контура",
-        note: "Фокус на структуре, подаче и сценариях заявки, без дополнительной настройки канала.",
-        items: []
+        minWeeks: 0,
+        maxWeeks: 0,
+        focus: "Чистая посадочная логика",
+        note: "Собираем сильную основу под обращение, а каналы роста можно подключать следующим этапом.",
+        items: [
+          "Структура, оффер и адаптив без перегруза.",
+          "Формы, CTA и базовая аналитика.",
+          "Основа для дальнейшей рекламы или SEO."
+        ],
+        plan: "Сайт под заявки"
       },
       seo: {
-        label: "Сайт + SEO-подготовка",
+        label: "Сайт + SEO",
         price: 45000,
-        weeks: 1,
-        focus: "Основа под поиск и расширение",
-        note: "Сразу закладываем семантику и карту посадочных, чтобы проект не пришлось пересобирать при дальнейшем росте.",
-        items: ["Семантика, контентный каркас и карта посадочных под поиск."]
+        minWeeks: 1,
+        maxWeeks: 2,
+        focus: "Поисковая база под рост",
+        note: "Закладываем семантику, карту страниц и контентный каркас заранее, чтобы не переделывать сайт после релиза.",
+        items: [
+          "Семантика по нише, географии и услугам.",
+          "H1-H3, title, description и логика перелинковки.",
+          "Структура, которую можно спокойно масштабировать."
+        ],
+        plan: "Сайт + SEO-подготовка"
       },
       direct: {
-        label: "Сайт + Яндекс Директ",
-        price: 55000,
-        weeks: 1,
-        focus: "Связка посадки и рекламного запуска",
-        note: "Подходит, если важно быстрее выйти в трафик и синхронизировать оффер, посадку и аналитику.",
-        items: ["Подготовка посадки под рекламные кампании, аналитику и тесты гипотез."]
+        label: "Сайт + Директ",
+        price: 60000,
+        minWeeks: 1,
+        maxWeeks: 2,
+        focus: "Быстрый выход в платный спрос",
+        note: "Подходит, если нужно быстрее выйти в трафик и проверить гипотезы по офферу и спросу.",
+        items: [
+          "Связка посадочной со сценарием рекламного запуска.",
+          "Подготовка оффера и точек захвата под трафик.",
+          "База для теста спроса без лишней суеты."
+        ],
+        plan: "Сайт + Яндекс Директ"
       },
       full: {
         label: "Полный контур",
-        price: 95000,
-        weeks: 2,
-        focus: "Единая digital-система роста",
-        note: "Самый системный сценарий: сайт, SEO-основа и платный трафик проектируются сразу в одной логике.",
-        items: ["Одна стратегия для сайта, SEO-подготовки, аналитики и рекламного запуска."]
+        price: 90000,
+        minWeeks: 2,
+        maxWeeks: 3,
+        focus: "Система под рост и масштаб",
+        note: "Когда нужен не отдельный deliverable, а сайт, SEO, аналитика и платный трафик в одной логике.",
+        items: [
+          "Сайт, SEO-подготовка и рекламный запуск в одной модели.",
+          "Единая аналитика и понятный маршрут следующих итераций.",
+          "Управляемый контур без разрыва между подрядчиками."
+        ],
+        plan: "Комплексный запуск"
       }
     },
     priority: {
       standard: {
         label: "Спокойный запуск",
         price: 0,
-        weeks: 0,
-        note: "Нормальный темп с запасом на согласования, тексты и тесты до релиза."
+        minWeeks: 0,
+        maxWeeks: 0,
+        focus: "Нормальный темп с согласованием",
+        note: "Оптимально, если важны аккуратные итерации, контент и время на согласования без перегруза команды.",
+        items: [
+          "Плановый темп с ревью и доработками.",
+          "Время на согласование ключевых экранов и текстов.",
+          "Стабильный релиз без компромиссов по качеству."
+        ]
       },
       fast: {
         label: "Ускоренный выход",
-        price: 30000,
-        weeks: -1,
-        note: "Сокращаем цикл согласований и собираем запуск плотнее, если важно быстрее выйти в рекламу."
+        price: 35000,
+        minWeeks: -1,
+        maxWeeks: -1,
+        focus: "Быстрый релиз и трафик",
+        note: "Нужен, если сайт или посадочная должны быстрее выйти в работу под рекламу, запуск услуги или новый сезон.",
+        items: [
+          "Укороченные циклы согласования и приоритетные экраны.",
+          "Фокус на первом конверсионном релизе без второстепенного шума.",
+          "Более плотный режим работы по правкам и запуску."
+        ]
       }
     }
   };
@@ -563,14 +616,13 @@ if (estimatorElement) {
     const project = estimatorConfig.project[estimatorState.project];
     const contour = estimatorConfig.contour[estimatorState.contour];
     const priority = estimatorConfig.priority[estimatorState.priority];
-    const totalPrice = project.price + contour.price + priority.price;
-    const minWeeks = Math.max(2, project.minWeeks + contour.weeks + priority.weeks);
-    const maxWeeks = Math.max(minWeeks, project.maxWeeks + contour.weeks + priority.weeks);
-    const items = [...project.items, ...contour.items].slice(0, 3);
-    const summary = `${project.label}, ${contour.label}, ${priority.label}`;
+
+    const price = project.price + contour.price + priority.price;
+    const minWeeks = Math.max(project.minWeeks + contour.minWeeks + priority.minWeeks, 2);
+    const maxWeeks = Math.max(project.maxWeeks + contour.maxWeeks + priority.maxWeeks, minWeeks);
 
     if (priceNode) {
-      priceNode.textContent = formatPrice(totalPrice);
+      priceNode.textContent = formatPrice(price);
     }
 
     if (timeNode) {
@@ -582,21 +634,24 @@ if (estimatorElement) {
     }
 
     if (noteNode) {
-      noteNode.textContent = `${project.note} ${contour.note} ${priority.note}`;
+      noteNode.textContent = [project.note, contour.note, priority.note].filter(Boolean).join(" ");
     }
 
     if (listNode) {
+      const items = [...project.items, ...contour.items, ...priority.items].slice(0, 5);
       listNode.innerHTML = items.map((item) => `<li>${item}</li>`).join("");
     }
 
     if (ctaNode) {
-      ctaNode.href = `contacts.html?plan=${encodeURIComponent(summary)}#brief`;
+      const planLabel = [project.label, contour.plan, priority.label].filter(Boolean).join(" / ");
+      ctaNode.href = `contacts.html#brief?plan=${encodeURIComponent(planLabel)}`;
     }
   };
 
   estimatorElement.querySelectorAll(".estimator-option").forEach((option) => {
     option.addEventListener("click", () => {
       const group = option.closest("[data-estimator-group]");
+
       if (!group) {
         return;
       }
@@ -621,23 +676,38 @@ document.querySelectorAll("[data-form]").forEach((form) => {
   const savedPlan = new URLSearchParams(window.location.search).get("plan");
   const taskField = form.querySelector('textarea[name="task"]');
   const status = form.querySelector(".form-status");
+  const subjectPrefix = form.dataset.subject || "Заявка с сайта VEXON";
 
   if (savedPlan && taskField && !taskField.value) {
-    taskField.value = `Интересует сценарий: ${savedPlan}. Нужен персональный план запуска и уточнение по составу работ.`;
+    taskField.value = `Интересует сценарий: ${savedPlan}. Нужен персональный разбор и уточнение по составу работ.`;
   }
 
   form.addEventListener("submit", (event) => {
     event.preventDefault();
 
+    const formData = new FormData(form);
+    const service = String(formData.get("service") || "").trim();
+    const lines = [
+      `Имя: ${String(formData.get("name") || "").trim() || "не указано"}`,
+      `Компания / ниша: ${String(formData.get("company") || "").trim() || "не указано"}`,
+      `Услуга: ${service || "не указано"}`,
+      `Контакт: ${String(formData.get("contact") || "").trim() || "не указано"}`,
+      `Сайт: ${String(formData.get("site") || "").trim() || "не указано"}`,
+      "",
+      "Задача:",
+      String(formData.get("task") || "").trim() || "Нужен разбор проекта и следующий шаг."
+    ];
+    const subject = service ? `${subjectPrefix} — ${service}` : subjectPrefix;
+    const mailtoHref = `mailto:hello@vexon.ru?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(
+      lines.join("\n")
+    )}`;
+
     if (status) {
-      status.textContent = "Спасибо. Бриф принят — следующий шаг пришлём на почту или в Telegram.";
+      status.textContent =
+        "Откроем почтовый клиент с готовым брифом. Если он не откроется, напишите на hello@vexon.ru или в Telegram.";
     }
 
-    form.reset();
-
-    if (savedPlan && taskField) {
-      taskField.value = "";
-    }
+    window.location.href = mailtoHref;
   });
 });
 
