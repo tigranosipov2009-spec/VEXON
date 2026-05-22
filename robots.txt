@@ -1,0 +1,80 @@
+# robots.txt for VEXON Studio
+# https://vexon-studio.tech
+
+User-agent: *
+Allow: /
+Allow: /assets/
+Allow: /logo/
+Disallow: /legal/
+Disallow: /*?utm_*
+Disallow: /*?yclid=
+Disallow: /*?gclid=
+Disallow: /*?fbclid=
+Disallow: /*?ref=
+Disallow: /*?from=
+Disallow: /search
+Disallow: /404
+
+Sitemap: https://vexon-studio.tech/sitemap.xml
+
+# Yandex — основной поисковик, разрешаем картинки и манифест (нужно для OG/превью)
+User-agent: Yandex
+Allow: /
+Allow: /assets/
+Allow: /logo/
+Disallow: /legal/
+Clean-param: utm_source&utm_medium&utm_campaign&utm_term&utm_content&yclid&gclid&fbclid&ref&from
+Host: vexon-studio.tech
+
+User-agent: Googlebot
+Allow: /
+Allow: /assets/
+Allow: /logo/
+Disallow: /legal/
+
+User-agent: Bingbot
+Allow: /
+Allow: /assets/
+Allow: /logo/
+Disallow: /legal/
+
+# Блокируем LLM-парсеры — не отдаём контент тренировке конкурентов
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: Claude-Web
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: PerplexityBot
+Disallow: /
+
+User-agent: Amazonbot
+Disallow: /
+
+# Агрессивные SEO-сканеры конкурентов — экономим серверные ресурсы
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: BLEXBot
+Disallow: /

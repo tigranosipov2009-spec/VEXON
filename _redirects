@@ -1,0 +1,22 @@
+# Force clean URLs — redirect .html requests to extension-less version
+# Cloudflare Pages serves both, but this ensures canonical URLs in browser bar
+
+/index.html / 301
+/services/websites.html /services/websites 301
+/services/ads.html /services/ads 301
+/services/bots.html /services/bots 301
+/services/ai.html /services/ai 301
+/services/ux.html /services/ux 301
+/services/apps.html /services/apps 301
+/services/seo.html /services/seo 301
+/services/branding.html /services/branding 301
+/services/analytics.html /services/analytics 301
+/legal/privacy.html /legal/privacy 301
+/legal/consent.html /legal/consent 301
+/legal/offer.html /legal/offer 301
+
+# Common typos / shortcuts
+/contact /#contact 302
+/pricing /#pricing 302
+/cases /#cases 302
+/services /#services 302

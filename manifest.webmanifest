@@ -1,0 +1,28 @@
+{
+  "name": "VEXON Studio",
+  "short_name": "VEXON",
+  "description": "Веб-студия в Симферополе: сайты, реклама и ИИ-решения для бизнеса.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#121414",
+  "theme_color": "#121414",
+  "lang": "ru",
+  "dir": "ltr",
+  "icons": [
+    {
+      "src": "/logo/photo_2_2026-05-21_15-23-50.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any"
+    },
+    {
+      "src": "/logo/photo_2_2026-05-21_15-23-50.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any"
+    }
+  ],
+  "categories": ["business", "productivity"]
+}

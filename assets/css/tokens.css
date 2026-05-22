@@ -1,0 +1,72 @@
+/* ==========================================================
+   TOKENS — design system variables
+   ========================================================== */
+:root {
+  /* surface */
+  --bg: #121414;
+  --bg-dim: #0d0e0f;
+  --surface: #1b1c1c;
+  --surface-2: #1f2020;
+  --surface-3: #292a2a;
+  --surface-4: #343535;
+
+  /* ink */
+  --ink: #e3e2e2;
+  --ink-2: #c4c9ac;
+  --ink-3: #8e9379;
+  --ink-mute: #6a6f5a;
+
+  /* lines */
+  --line: #2a2b2b;
+  --line-2: #444933;
+  --line-3: #383939;
+
+  /* accent — acid green */
+  --acid: #c3f400;
+  --acid-dim: #abd600;
+  --acid-glow: rgba(195, 244, 0, 0.18);
+  --acid-trace: rgba(195, 244, 0, 0.06);
+
+  /* Mac window controls */
+  --mac-red: #FF5F57;
+  --mac-yellow: #FEBC2E;
+  --mac-green: #28C840;
+
+  /* extras */
+  --warn: #ffb27a;
+  --info: #b6c9d8;
+  --err: #ffb4ab;
+
+  /* type */
+  --sans: 'Geist', system-ui, -apple-system, sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, 'SF Mono', monospace;
+
+  /* motion */
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* layout */
+  --max: 1440px;
+  --gutter: 64px;
+
+  /* breakpoints (used in media queries via static values; kept here as documentation) */
+  --bp-xs: 360px;   /* малые смартфоны (iPhone SE)            */
+  --bp-sm: 480px;   /* большие смартфоны                       */
+  --bp-md: 768px;   /* планшеты-портрет                        */
+  --bp-lg: 1024px;  /* планшеты-ландшафт, маленькие ноуты      */
+  --bp-xl: 1280px;  /* десктопы                                 */
+
+  /* nav height (used by mobile-menu fixed offset) */
+  --nav-h: 60px;
+
+  /* cursor tracking */
+  --mx: 50%;
+  --my: 50%;
+}
+/* progressive gutter: desktop → tablet → phone */
+@media (max-width: 1280px) { :root { --gutter: 48px; } }
+@media (max-width: 1024px) { :root { --gutter: 32px; } }
+@media (max-width: 768px)  { :root { --gutter: 24px; --nav-h: 56px; } }
+@media (max-width: 480px)  { :root { --gutter: 18px; } }
+@media (max-width: 360px)  { :root { --gutter: 14px; } }

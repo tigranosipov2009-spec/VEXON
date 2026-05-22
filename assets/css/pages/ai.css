@@ -1,0 +1,214 @@
+/* ==========================================================
+   AI — terminal with streaming response
+   ========================================================== */
+
+.ai-frame {
+  background: var(--bg-dim);
+  border: 1px solid var(--line-3);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.5);
+  position: relative;
+}
+.ai-bar {
+  padding: 11px 14px;
+  background: linear-gradient(to bottom, #1f2020, #1a1b1b);
+  border-bottom: 1px solid var(--line-3);
+  display: flex; align-items: center; gap: 12px;
+}
+.ai-bar .dots { display: flex; gap: 8px; }
+.ai-bar .dots i { width: 12px; height: 12px; border-radius: 50%; display: block; }
+.ai-bar .dots i:nth-child(1) { background: var(--mac-red); }
+.ai-bar .dots i:nth-child(2) { background: var(--mac-yellow); }
+.ai-bar .dots i:nth-child(3) { background: var(--mac-green); }
+.ai-bar .ttl { flex: 1; text-align: center; font-family: var(--mono); font-size: 11px; color: var(--ink-3); }
+.ai-bar .ttl b { color: var(--ink); }
+.ai-bar .model {
+  font-family: var(--mono); font-size: 10px;
+  color: var(--acid); letter-spacing: 0.06em;
+  padding: 4px 8px; border: 1px solid var(--line-3);
+}
+
+.ai-body {
+  padding: 28px;
+  display: flex; flex-direction: column;
+  gap: 20px;
+  min-height: 380px;
+  font-family: var(--mono); font-size: 13px;
+  position: relative;
+}
+
+.ai-msg {
+  display: flex; gap: 14px;
+}
+.ai-msg .ava {
+  width: 28px; height: 28px; flex-shrink: 0;
+  border: 1px solid var(--line-3);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--mono); font-size: 11px; font-weight: 700;
+  letter-spacing: 0.04em;
+}
+.ai-msg.user .ava { color: var(--ink-2); background: var(--surface); }
+.ai-msg.assistant .ava { color: var(--acid); border-color: var(--acid); background: rgba(195,244,0,0.06); }
+.ai-msg .content { flex: 1; padding-top: 4px; }
+.ai-msg .lbl {
+  font-family: var(--mono); font-size: 10px;
+  color: var(--ink-3); letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.ai-msg.user .text { color: var(--ink); font-size: 14px; }
+.ai-msg.assistant .text {
+  color: var(--ink-2); font-size: 13px; line-height: 1.65;
+}
+.ai-msg.assistant .text b { color: var(--ink); font-weight: 700; }
+.ai-msg.assistant .text code {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  padding: 1px 6px;
+  color: var(--acid);
+  font-size: 12px;
+}
+
+.ai-stream {
+  display: inline-block;
+  width: 0.55ch;
+  background: var(--acid);
+  height: 1em;
+  vertical-align: -0.15em;
+  margin-left: 2px;
+  animation: blink 1s steps(1) infinite;
+}
+
+.ai-tool {
+  display: flex; align-items: center; gap: 10px;
+  margin-top: 8px;
+  padding: 8px 12px;
+  background: var(--surface);
+  border: 1px solid var(--line-3);
+  border-left: 2px solid var(--acid);
+  font-family: var(--mono); font-size: 11px;
+  color: var(--ink-3);
+}
+.ai-tool .tool-name { color: var(--acid); font-weight: 700; }
+.ai-tool .status { margin-left: auto; color: var(--acid); }
+
+.ai-table {
+  margin-top: 12px;
+  border: 1px solid var(--line);
+  width: 100%;
+  font-family: var(--mono); font-size: 11px;
+}
+.ai-table .row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink-2);
+}
+.ai-table .row:last-child { border-bottom: none; }
+.ai-table .row.head {
+  background: var(--surface);
+  color: var(--ink-3);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-size: 10px;
+}
+.ai-table .row b { color: var(--acid); }
+
+.ai-input-bar {
+  display: flex; align-items: center; gap: 12px;
+  padding: 14px 22px;
+  background: var(--surface-2);
+  border-top: 1px solid var(--line);
+  font-family: var(--mono); font-size: 12px;
+  color: var(--ink-3);
+}
+.ai-input-bar .field {
+  flex: 1;
+  background: var(--bg);
+  border: 1px solid var(--line-3);
+  padding: 10px 14px;
+  color: var(--ink-mute);
+  display: flex; align-items: center; gap: 8px;
+}
+.ai-input-bar .field::after {
+  content: '_';
+  color: var(--acid);
+  animation: blink 1s steps(1) infinite;
+}
+.ai-input-bar .send {
+  width: 36px; height: 36px;
+  background: var(--acid); color: #161e00;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 16px;
+}
+
+/* USE CASES grid */
+.usecases {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  border: 1px solid var(--line);
+}
+@media (max-width: 900px) { .usecases { grid-template-columns: 1fr; } }
+.usecase {
+  padding: 30px 26px;
+  border-right: 1px solid var(--line);
+  background: var(--bg);
+  position: relative;
+  overflow: hidden;
+  transition: background 0.2s var(--ease);
+}
+.usecase:last-child { border-right: none; }
+.usecase:hover { background: var(--surface); }
+.usecase .badge {
+  display: inline-block;
+  font-family: var(--mono); font-size: 10px;
+  color: var(--acid); letter-spacing: 0.06em;
+  padding: 4px 8px;
+  border: 1px solid var(--acid);
+  background: rgba(195,244,0,0.06);
+  margin-bottom: 18px;
+}
+.usecase h4 {
+  font-size: 18px; font-weight: 600;
+  letter-spacing: -0.015em; color: var(--ink);
+  margin-bottom: 10px;
+}
+.usecase p { font-size: 13px; color: var(--ink-3); line-height: 1.5; }
+.usecase .pricing-hint {
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+  font-family: var(--mono); font-size: 11px;
+  color: var(--ink-3);
+}
+.usecase .pricing-hint b { color: var(--ink); }
+
+/* models showcase */
+.models-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border: 1px solid var(--line);
+}
+@media (max-width: 900px) { .models-grid { grid-template-columns: repeat(2, 1fr); } }
+.model-card {
+  padding: 22px 18px;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: var(--bg);
+}
+.model-card:nth-child(4n) { border-right: none; }
+.model-card .vendor {
+  font-family: var(--mono); font-size: 10px;
+  color: var(--ink-3); letter-spacing: 0.06em;
+  margin-bottom: 8px;
+}
+.model-card .mname {
+  font-size: 18px; font-weight: 700;
+  letter-spacing: -0.02em; color: var(--ink);
+  margin-bottom: 6px;
+}
+.model-card .desc {
+  font-size: 12px; color: var(--ink-3); line-height: 1.5;
+}

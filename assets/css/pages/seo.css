@@ -1,0 +1,174 @@
+/* ==========================================================
+   SEO — SERP visualization + keyword cloud
+   ========================================================== */
+
+.serp {
+  background: var(--bg-dim);
+  border: 1px solid var(--line-3);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.5);
+}
+.serp-bar {
+  padding: 11px 14px;
+  background: linear-gradient(to bottom, #1f2020, #1a1b1b);
+  border-bottom: 1px solid var(--line-3);
+  display: flex; align-items: center; gap: 12px;
+}
+.serp-bar .dots { display: flex; gap: 8px; }
+.serp-bar .dots i { width: 12px; height: 12px; border-radius: 50%; display: block; }
+.serp-bar .dots i:nth-child(1) { background: var(--mac-red); }
+.serp-bar .dots i:nth-child(2) { background: var(--mac-yellow); }
+.serp-bar .dots i:nth-child(3) { background: var(--mac-green); }
+.serp-search {
+  flex: 1;
+  background: var(--surface-2);
+  border: 1px solid var(--line-3);
+  padding: 6px 12px;
+  display: flex; align-items: center; gap: 8px;
+  font-family: var(--mono); font-size: 11px;
+  color: var(--ink);
+  border-radius: 4px;
+}
+.serp-search::before { content: '🔍'; font-size: 11px; opacity: 0.7; }
+.serp-search .acid { color: var(--acid); }
+
+.serp-body { padding: 18px; display: flex; flex-direction: column; gap: 8px; min-height: 360px; }
+
+.serp-result {
+  padding: 12px 14px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  position: relative;
+  transition: all 0.3s var(--ease);
+  display: flex; flex-direction: column; gap: 4px;
+}
+.serp-result.ours {
+  background: var(--surface-2);
+  border-color: var(--acid);
+  box-shadow: inset 0 0 0 1px var(--acid), 0 0 24px var(--acid-trace);
+  animation: serpRise 1s var(--ease) forwards;
+}
+@keyframes serpRise {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+  100% { transform: translateY(0); }
+}
+.serp-rank {
+  position: absolute; left: -12px; top: 50%;
+  transform: translateY(-50%);
+  width: 24px; height: 24px;
+  background: var(--bg);
+  border: 1px solid var(--line-3);
+  font-family: var(--mono); font-size: 11px; font-weight: 700;
+  color: var(--ink-3);
+  display: flex; align-items: center; justify-content: center;
+}
+.serp-result.ours .serp-rank {
+  background: var(--acid); color: #161e00;
+  border-color: var(--acid);
+  box-shadow: 0 0 12px var(--acid-glow);
+}
+.serp-result .url {
+  font-family: var(--mono); font-size: 10px;
+  color: var(--ink-3); letter-spacing: 0.04em;
+}
+.serp-result.ours .url { color: var(--acid); }
+.serp-result .title {
+  font-size: 14px; font-weight: 600;
+  color: var(--ink); letter-spacing: -0.01em;
+}
+.serp-result .desc {
+  font-size: 11px; color: var(--ink-3); line-height: 1.5;
+}
+.serp-trend {
+  position: absolute; right: 14px; top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--mono); font-size: 11px;
+  display: flex; align-items: center; gap: 4px;
+}
+.serp-trend.up { color: var(--acid); }
+.serp-trend.down { color: var(--err); }
+.serp-trend::before {
+  content: ''; display: inline-block;
+  width: 0; height: 0;
+}
+.serp-trend.up::before {
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 7px solid var(--acid);
+}
+.serp-trend.down::before {
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 7px solid var(--err);
+}
+
+/* keyword cloud */
+.keywords {
+  margin-top: 60px;
+  padding: 32px;
+  background: var(--bg-dim);
+  border: 1px solid var(--line);
+  position: relative;
+  overflow: hidden;
+}
+.keywords::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(60% 60% at 50% 50%, rgba(195,244,0,0.04), transparent 70%);
+}
+.keywords-head {
+  display: flex; justify-content: space-between;
+  align-items: baseline; margin-bottom: 18px;
+  font-family: var(--mono); font-size: 11px;
+  color: var(--ink-3); letter-spacing: 0.06em;
+  text-transform: uppercase;
+  position: relative;
+}
+.keywords-head b { color: var(--acid); }
+.keywords-cloud {
+  display: flex; flex-wrap: wrap;
+  gap: 6px;
+  position: relative;
+}
+.kw {
+  padding: 6px 12px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  font-family: var(--mono); font-size: 12px;
+  color: var(--ink-2);
+  transition: all 0.25s var(--ease);
+  cursor: default;
+}
+.kw:hover {
+  background: var(--acid);
+  color: #161e00;
+  border-color: var(--acid);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px var(--acid-glow);
+}
+.kw.lg { font-size: 16px; padding: 8px 16px; color: var(--ink); }
+.kw.xl { font-size: 20px; padding: 10px 20px; color: var(--acid); font-weight: 700; border-color: var(--acid); }
+
+/* traffic chart */
+.traffic-chart {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  padding: 22px;
+  margin-top: 14px;
+}
+.traffic-head {
+  display: flex; justify-content: space-between;
+  margin-bottom: 14px;
+  font-family: var(--mono); font-size: 11px;
+  color: var(--ink-3); letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.traffic-head b { color: var(--ink); font-size: 22px; font-weight: 700; letter-spacing: -0.02em; }
+.traffic-svg {
+  width: 100%; height: 160px;
+  display: block;
+}
+.traffic-svg .area { fill: url(#trafficGrad); opacity: 0.5; }
+.traffic-svg .line { fill: none; stroke: var(--acid); stroke-width: 2; }
+.traffic-svg .dot { fill: var(--acid); }

@@ -1,0 +1,203 @@
+/* ==========================================================
+   WEBSITES — browser mockup + Lighthouse score
+   ========================================================== */
+
+/* browser frame */
+.browser {
+  background: var(--bg-dim);
+  border: 1px solid var(--line-3);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.5), inset 0 0 0 1px rgba(195,244,0,0.04);
+  position: relative;
+}
+.browser-bar {
+  display: flex; align-items: center; gap: 12px;
+  padding: 11px 14px;
+  background: linear-gradient(to bottom, #1f2020, #1a1b1b);
+  border-bottom: 1px solid var(--line-3);
+}
+.browser-dots { display: flex; gap: 8px; }
+.browser-dots i {
+  width: 12px; height: 12px; border-radius: 50%;
+  display: block;
+  box-shadow: inset 0 0 0 0.5px rgba(0,0,0,0.25);
+}
+.browser-dots i:nth-child(1) { background: var(--mac-red); }
+.browser-dots i:nth-child(2) { background: var(--mac-yellow); }
+.browser-dots i:nth-child(3) { background: var(--mac-green); }
+.browser-url {
+  flex: 1;
+  background: var(--surface-2);
+  border: 1px solid var(--line-3);
+  border-radius: 4px;
+  padding: 6px 12px;
+  font-family: var(--mono); font-size: 11px;
+  color: var(--ink-2);
+  display: flex; align-items: center; gap: 8px;
+}
+.browser-url::before {
+  content: '🔒'; font-size: 10px; opacity: 0.6;
+}
+.browser-url .acid { color: var(--acid); }
+.browser-tabs {
+  display: flex; gap: 4px;
+  font-family: var(--mono); font-size: 10px;
+  color: var(--ink-3);
+  letter-spacing: 0.04em; text-transform: uppercase;
+}
+.browser-tabs button {
+  padding: 4px 10px;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--ink-3);
+  transition: all 0.2s var(--ease);
+  cursor: pointer;
+  font-family: inherit; font-size: inherit;
+}
+.browser-tabs button.active { background: var(--acid); color: #161e00; border-color: var(--acid); }
+.browser-tabs button:hover:not(.active) { color: var(--ink); border-color: var(--line-3); }
+
+.browser-body {
+  position: relative;
+  min-height: 380px;
+  background: var(--bg);
+  overflow: hidden;
+}
+.browser-page {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  padding: 24px 28px;
+  opacity: 0; transform: translateY(12px);
+  transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
+  pointer-events: none;
+}
+.browser-page.active { opacity: 1; transform: translateY(0); pointer-events: auto; }
+
+/* page mock styles */
+.bp-tag {
+  font-family: var(--mono); font-size: 10px;
+  color: var(--acid); letter-spacing: 0.08em;
+  margin-bottom: 8px;
+}
+.bp-title {
+  font-size: 22px; font-weight: 700; line-height: 1.1;
+  letter-spacing: -0.02em; color: var(--ink);
+  margin-bottom: 8px;
+}
+.bp-sub {
+  font-size: 12px; color: var(--ink-3);
+  max-width: 340px; margin-bottom: 14px;
+  line-height: 1.5;
+}
+.bp-cta {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--acid); color: #161e00;
+  padding: 8px 14px;
+  font-family: var(--mono); font-size: 10px;
+  font-weight: 700; letter-spacing: 0.06em;
+  text-transform: uppercase;
+  width: fit-content;
+  margin-bottom: 18px;
+  animation: shimmer 3s linear infinite;
+  background-size: 200% auto;
+  background-image: linear-gradient(120deg, var(--acid) 0%, #fff 50%, var(--acid) 100%);
+}
+
+.bp-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 8px; margin-top: auto;
+}
+.bp-cell {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  padding: 10px;
+  font-family: var(--mono); font-size: 10px;
+  color: var(--ink-3);
+  display: flex; flex-direction: column; gap: 4px;
+  min-height: 64px;
+}
+.bp-cell b { color: var(--acid); font-size: 16px; font-weight: 700; }
+
+/* Lighthouse score widget */
+.lighthouse {
+  margin-top: 16px;
+  background: var(--bg-dim);
+  border: 1px solid var(--line-3);
+  border-radius: 6px;
+  padding: 18px;
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+.lh-cell {
+  display: flex; flex-direction: column;
+  align-items: center; gap: 6px;
+}
+.lh-circle {
+  width: 60px; height: 60px;
+  border-radius: 50%;
+  position: relative;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--mono); font-size: 18px; font-weight: 700;
+  color: var(--acid);
+  background:
+    conic-gradient(var(--acid) calc(var(--score, 0) * 1%), var(--surface-2) 0);
+  transition: --score 1.5s var(--ease);
+}
+.lh-circle::before {
+  content: ''; position: absolute; inset: 4px;
+  background: var(--bg);
+  border-radius: 50%;
+  z-index: 0;
+}
+.lh-circle span { position: relative; z-index: 1; }
+.lh-circle .pct { color: var(--ink); }
+.lh-circle.in .pct { color: var(--acid); }
+@property --score { syntax: '<number>'; inherits: false; initial-value: 0; }
+.lh-circle.in { --score: var(--target, 100); }
+.lh-label {
+  font-family: var(--mono); font-size: 9px;
+  color: var(--ink-3); letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+/* TECH BLOCKS — что внутри сайта */
+.tech-blocks {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+  border: 1px solid var(--line);
+}
+@media (max-width: 900px) { .tech-blocks { grid-template-columns: repeat(2, 1fr); } }
+.tech-block {
+  padding: 24px 20px;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: var(--bg);
+  position: relative;
+  overflow: hidden;
+  transition: background 0.25s var(--ease);
+}
+.tech-block:hover { background: var(--surface); }
+.tech-block:nth-child(4n) { border-right: none; }
+.tech-block::after {
+  content: attr(data-num);
+  position: absolute; top: 12px; right: 16px;
+  font-family: var(--mono); font-size: 48px; font-weight: 700;
+  color: var(--acid); opacity: 0.08;
+  letter-spacing: -0.06em;
+  transition: opacity 0.3s var(--ease);
+}
+.tech-block:hover::after { opacity: 0.2; }
+.tech-block .ico {
+  width: 32px; height: 32px;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid var(--acid);
+  color: var(--acid);
+  font-family: var(--mono); font-size: 16px; font-weight: 700;
+  margin-bottom: 14px;
+}
+.tech-block h4 {
+  font-size: 15px; font-weight: 600; letter-spacing: -0.015em;
+  margin-bottom: 6px;
+}
+.tech-block p { font-size: 12px; color: var(--ink-3); line-height: 1.5; }

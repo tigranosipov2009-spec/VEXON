@@ -1,0 +1,33 @@
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*~
+
+# Editor
+.vscode/
+.idea/
+*.sublime-*
+
+# Node modules (если позже добавишь сборку)
+node_modules/
+package-lock.json
+
+# Логи и временное
+*.log
+.cache/
+dist-tmp/
+
+# Бэкапы
+*.bak
+*.zip
+*.tar.gz
+
+# Локальные настройки
+.env
+.env.local
+
+# Wrangler / Cloudflare local cache
+.wrangler/
+.dev.vars

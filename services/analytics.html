@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="theme-color" content="#121414" />
+<title>Сквозная аналитика и CRM — видите ROI каждого рубля</title>
+<meta name="description" content="📊 Подключаем Яндекс Метрику, GA4, amoCRM, Bitrix24, Roistat. Дашборд с реальной выручкой по каждому каналу. Внедряем за 5 рабочих дней. От 5 000 ₽." />
+<meta name="keywords" content="сквозная аналитика, настройка яндекс метрики, интеграция CRM, GA4, amoCRM, Roistat, отслеживание лидов" />
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1" />
+<meta name="geo.region" content="RU-CR" />
+<meta name="geo.placename" content="Симферополь" />
+<link rel="canonical" href="https://vexon-studio.tech/services/analytics" />
+<link rel="icon" type="image/jpeg" sizes="any" href="../logo/photo_2_2026-05-21_15-23-50.jpg" />
+<link rel="manifest" href="../manifest.webmanifest" />
+<link rel="apple-touch-icon" sizes="180x180" href="../logo/photo_2_2026-05-21_15-23-50.jpg" />
+<meta property="og:image" content="https://vexon-studio.tech/logo/photo_5_2026-05-21_15-23-50.jpg" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" />
+<link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" />
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" /></noscript>
+
+<!-- Yandex.Metrika counter (deferred) -->
+<script type="text/javascript">
+    (function(){
+      function loadYm(){
+        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,'script','https://mc.yandex.ru/metrika/tag.js?id=109344122','ym');
+        ym(109344122,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",referrer:document.referrer,url:location.href,accurateTrackBounce:true,trackLinks:true});
+      }
+      var loaded=false; function once(){ if(loaded) return; loaded=true; loadYm(); }
+      if(document.readyState==='complete'){ setTimeout(once,1500); }
+      else { window.addEventListener('load', function(){ setTimeout(once,1500); }, {once:true}); }
+      ['scroll','mousemove','touchstart','keydown'].forEach(function(ev){ window.addEventListener(ev, once, {once:true, passive:true}); });
+    })();
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/109344122" style="position:absolute; left:-9999px;" alt="Яндекс Метрика" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+
+<link rel="stylesheet" href="../assets/css/tokens.css" />
+<link rel="stylesheet" href="../assets/css/base.css" />
+<link rel="stylesheet" href="../assets/css/components.css" />
+<link rel="stylesheet" href="../assets/css/layout.css" />
+<link rel="stylesheet" href="../assets/css/animations.css" />
+<link rel="stylesheet" href="../assets/css/pages/analytics.css" />
+</head>
+<body>
+
+<vexon-atmosphere></vexon-atmosphere>
+<vexon-nav current="analytics"></vexon-nav>
+
+<main>
+
+<section class="sub-hero">
+  <div class="container">
+    <div class="crumbs reveal"><a href="/">VEXON</a><span class="sep">/</span><a href="/#services">Услуги</a><span class="sep">/</span><span class="here">Аналитика и CRM</span></div>
+
+    <div class="sub-hero-grid">
+      <div class="reveal-left">
+        <h1>Сквозная аналитика. <span class="acid">Знайте, какой рубль</span><br>приносит выручку.</h1>
+        <p class="lead">Не «настроим Метрику». А полноценная BI-инфраструктура: коллтрекинг, атрибуция, дашборды, прогнозы. От первого клика до повторной продажи — всё на одном экране.</p>
+        <div class="sub-hero-actions">
+          <a href="#contact" class="btn btn-primary" data-magnet>Обсудить аналитику<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a href="#flow" class="btn btn-ghost">Схема системы</a>
+        </div>
+        <div class="sub-hero-meta">
+          <span class="online">принимаем проекты</span>
+          <span>// точность атрибуции <b>95%+</b></span>
+        </div>
+      </div>
+
+      <aside class="spec reveal-right">
+        <div class="spec-head"><div class="dots"><i></i><i></i><i></i></div><div class="ttl">root@vexon — <b>analytics.spec</b></div></div>
+        <div class="spec-body">
+          <div class="spec-kicker">// что вы получите</div>
+          <div class="spec-row"><span class="k">Срок настройки</span><span class="v acid">5–10 дней</span></div>
+          <div class="spec-row"><span class="k">Точность атрибуции</span><span class="v">95%+</span></div>
+          <div class="spec-row"><span class="k">Источников</span><span class="v">8+ каналов</span></div>
+          <div class="spec-row"><span class="k">Дашборды</span><span class="v">real-time</span></div>
+          <div class="spec-row"><span class="k">Передаём</span><span class="v acid">доступы и схему</span></div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- SIGNATURE: animated data flow diagram -->
+<section class="section" id="flow">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-tag">
+        <div class="kicker" data-typew>01 / СХЕМА ДАННЫХ</div>
+        <h2 class="h-lg reveal">Так данные текут <span class="acid">от клика до отчёта</span></h2>
+      </div>
+      <p class="body-lg reveal">Каждое касание — на трекинге. Каждая сделка — привязана к источнику. Точки на схеме — реальные события прямо сейчас.</p>
+    </div>
+
+    <div class="dataflow reveal-zoom">
+      <div class="dataflow-bar">
+        <div class="dots"><i></i><i></i><i></i></div>
+        <div class="ttl">root@vexon — <b>analytics/pipeline.live</b></div>
+        <div class="live">LIVE</div>
+      </div>
+
+      <div class="dataflow-body">
+        <div class="df-lines" aria-hidden="true">
+          <svg viewBox="0 0 800 200" preserveAspectRatio="none">
+            <path id="dfPath1" d="M 110 100 Q 200 100 290 100" />
+            <path id="dfPath2" d="M 310 100 Q 400 100 490 100" />
+            <path id="dfPath3" d="M 510 100 Q 600 100 690 100" />
+            <circle class="df-particle" r="4" id="dfDot1">
+              <animateMotion dur="2.5s" repeatCount="indefinite" rotate="auto">
+                <mpath href="#dfPath1"/>
+              </animateMotion>
+            </circle>
+            <circle class="df-particle" r="4" id="dfDot2">
+              <animateMotion dur="2.5s" repeatCount="indefinite" begin="0.4s" rotate="auto">
+                <mpath href="#dfPath1"/>
+              </animateMotion>
+            </circle>
+            <circle class="df-particle" r="4" id="dfDot3">
+              <animateMotion dur="2.5s" repeatCount="indefinite" begin="0.8s" rotate="auto">
+                <mpath href="#dfPath2"/>
+              </animateMotion>
+            </circle>
+            <circle class="df-particle" r="4" id="dfDot4">
+              <animateMotion dur="2.5s" repeatCount="indefinite" begin="1.2s" rotate="auto">
+                <mpath href="#dfPath2"/>
+              </animateMotion>
+            </circle>
+            <circle class="df-particle" r="4" id="dfDot5">
+              <animateMotion dur="2.5s" repeatCount="indefinite" begin="1.6s" rotate="auto">
+                <mpath href="#dfPath3"/>
+              </animateMotion>
+            </circle>
+            <circle class="df-particle" r="4" id="dfDot6">
+              <animateMotion dur="2.5s" repeatCount="indefinite" begin="2s" rotate="auto">
+                <mpath href="#dfPath3"/>
+              </animateMotion>
+            </circle>
+          </svg>
+        </div>
+
+        <div class="df-nodes">
+          <div class="df-node">
+            <span class="pulse"></span>
+            <div class="ico">→</div>
+            <div class="lbl">// 01 · источник</div>
+            <div class="name">Трафик</div>
+            <div class="meta"><b id="df-clicks">2 847</b> кликов</div>
+          </div>
+          <div class="df-node">
+            <span class="pulse"></span>
+            <div class="ico">∗</div>
+            <div class="lbl">// 02 · трекер</div>
+            <div class="name">GA4 + Метрика</div>
+            <div class="meta"><b id="df-events">12 480</b> событий</div>
+          </div>
+          <div class="df-node">
+            <span class="pulse"></span>
+            <div class="ico">⌗</div>
+            <div class="lbl">// 03 · CRM</div>
+            <div class="name">amoCRM</div>
+            <div class="meta"><b id="df-leads">186</b> лидов</div>
+          </div>
+          <div class="df-node">
+            <span class="pulse"></span>
+            <div class="ico">$</div>
+            <div class="lbl">// 04 · BI</div>
+            <div class="name">Dashboard</div>
+            <div class="meta"><b id="df-revenue">4.2M ₽</b></div>
+          </div>
+        </div>
+
+        <div class="df-live">
+          <div class="df-stat"><span class="k">CR клик→лид</span><span class="v">6.5%</span><span class="d">+0.4pp за неделю</span></div>
+          <div class="df-stat"><span class="k">CR лид→сделка</span><span class="v">32%</span><span class="d">+2pp за неделю</span></div>
+          <div class="df-stat"><span class="k">CAC</span><span class="v">1 240 ₽</span><span class="d">−18% за месяц</span></div>
+          <div class="df-stat"><span class="k">LTV</span><span class="v">28 600 ₽</span><span class="d">+22% за квартал</span></div>
+          <div class="df-stat"><span class="k">ROMI</span><span class="v">4.8x</span><span class="d">прогноз 5.2x</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- источники -->
+    <div class="source-grid stagger" style="margin-top:24px">
+      <div class="source-cell">
+        <div class="src">// я.директ</div>
+        <div class="conv">486</div>
+        <div class="conv-lbl">лидов · 412k ₽</div>
+        <div class="barchart" data-spark>
+          <i data-h="40" class="peak"></i><i data-h="55"></i><i data-h="48"></i><i data-h="62"></i><i data-h="70"></i><i data-h="58"></i><i data-h="78"></i><i data-h="92" class="peak"></i>
+        </div>
+      </div>
+      <div class="source-cell">
+        <div class="src">// vk ads</div>
+        <div class="conv">312</div>
+        <div class="conv-lbl">лидов · 268k ₽</div>
+        <div class="barchart" data-spark>
+          <i data-h="30"></i><i data-h="42"></i><i data-h="38" class="peak"></i><i data-h="50"></i><i data-h="58"></i><i data-h="48"></i><i data-h="68" class="peak"></i><i data-h="62"></i>
+        </div>
+      </div>
+      <div class="source-cell">
+        <div class="src">// органика</div>
+        <div class="conv">248</div>
+        <div class="conv-lbl">лидов · 198k ₽</div>
+        <div class="barchart" data-spark>
+          <i data-h="22"></i><i data-h="28"></i><i data-h="34"></i><i data-h="42"></i><i data-h="48"></i><i data-h="58" class="peak"></i><i data-h="64"></i><i data-h="72" class="peak"></i>
+        </div>
+      </div>
+      <div class="source-cell">
+        <div class="src">// telegram</div>
+        <div class="conv">201</div>
+        <div class="conv-lbl">лидов · 145k ₽</div>
+        <div class="barchart" data-spark>
+          <i data-h="18"></i><i data-h="25"></i><i data-h="32"></i><i data-h="28"></i><i data-h="42" class="peak"></i><i data-h="38"></i><i data-h="48"></i><i data-h="55" class="peak"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DELIVERABLES -->
+<section class="section">
+  <div class="container">
+    <div class="section-head"><div class="section-tag"><div class="kicker" data-typew>02 / ЧТО ВХОДИТ</div><h2 class="h-lg reveal">Единая <span class="acid">инфраструктура данных</span></h2></div><p class="body-lg reveal">Не разрозненные счётчики, а связанная система: трафик → лид → сделка → повторная продажа.</p></div>
+    <div class="deliv stagger">
+      <article class="deliv-item"><div class="deliv-num">// 01</div><h4>GA4 и Метрика</h4><p>Полная настройка целей, событий, server-side tracking.</p></article>
+      <article class="deliv-item"><div class="deliv-num">// 02</div><h4>CRM-интеграция</h4><p>amoCRM, Bitrix24, HubSpot. UTM в каждой сделке.</p></article>
+      <article class="deliv-item"><div class="deliv-num">// 03</div><h4>Коллтрекинг</h4><p>Calltouch, Roistat. Звонки привязаны к источникам.</p></article>
+      <article class="deliv-item"><div class="deliv-num">// 04</div><h4>Сквозная атрибуция</h4><p>Clicks → leads → revenue. Точность 95%+.</p></article>
+      <article class="deliv-item"><div class="deliv-num">// 05</div><h4>BI-дашборды</h4><p>Power BI, Looker, Metabase. Real-time, без задержек.</p></article>
+      <article class="deliv-item"><div class="deliv-num">// 06</div><h4>Прогнозы</h4><p>LTV-прогноз, скоринг лидов. ML на ваших данных.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="section">
+  <div class="container">
+    <div class="section-head"><div class="section-tag"><div class="kicker" data-typew>03 / СТОИМОСТЬ</div><h2 class="h-lg reveal">Окупается за <span class="acid">первый месяц</span></h2></div><p class="body-lg reveal">Знание = деньги. Один отключённый «мёртвый» канал окупает всю настройку.</p></div>
+    <div class="pricing">
+      <article class="plan reveal-left"><h3>Базовая</h3><div class="plan-desc">// для старта</div><div class="plan-price"><span class="price">от 5 000 ₽</span><span class="unit">/ проект</span></div><ul><li>GA4 + Метрика</li><li>Tag Manager</li><li>Цели и события</li><li>UTM-разметка</li><li>Подключение к рекламе</li><li>1 базовый дашборд</li></ul><a href="#contact" class="btn btn-ghost">Обсудить</a></article>
+      <article class="plan plan-rec reveal"><div class="plan-badge">// рекомендуем</div><h3>Сквозная</h3><div class="plan-desc">// для роста</div><div class="plan-price"><span class="price">от 10 000 ₽</span><span class="unit">/ проект</span></div><ul><li>Всё из «Базовой»</li><li>Server-side tracking</li><li>Коллтрекинг</li><li>Интеграция CRM</li><li>Сквозная атрибуция</li><li>BI-дашборд</li><li>Обучение команды</li></ul><a href="#contact" class="btn btn-primary">Обсудить</a></article>
+      <article class="plan reveal-right"><h3>Custom BI</h3><div class="plan-desc">// под продукт</div><div class="plan-price"><span class="price">от 15 000 ₽</span><span class="unit">/ проект</span></div><ul><li>Всё из «Сквозной»</li><li>DWH (ClickHouse / BigQuery)</li><li>ETL-пайплайны</li><li>Прогнозные модели</li><li>Custom-дашборды</li><li>Поддержка 3 месяца</li></ul><a href="#contact" class="btn btn-ghost">Обсудить</a></article>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section">
+  <div class="container">
+    <div class="section-head"><div class="section-tag"><div class="kicker" data-typew>04 / FAQ</div><h2 class="h-lg reveal">Что обычно спрашивают</h2></div><p class="body-lg reveal">Нет ответа — напишите в Telegram.</p></div>
+    <div class="faq">
+      <details open><summary><span class="ix">// 01</span><span class="q">Что такое «сквозная аналитика»?</span><span class="ico"></span></summary><div class="a">Связь данных: реклама → сайт → лид → CRM → сделка → выручка. Видите не «100 кликов», а «100 кликов → 12 лидов → 3 сделки → 480 000 ₽».</div></details>
+      <details><summary><span class="ix">// 02</span><span class="q">Чем server-side лучше обычного?</span><span class="ico"></span></summary><div class="a">Браузерные блокировщики режут 20–40% событий. Server-side даёт реальную картину. На больших объёмах — миллионы рублей выручки.</div></details>
+      <details><summary><span class="ix">// 03</span><span class="q">С какими CRM работаете?</span><span class="ico"></span></summary><div class="a">amoCRM, Bitrix24, HubSpot, Salesforce. С другими — через API. Делали кастомные интеграции с 1С и SAP.</div></details>
+      <details><summary><span class="ix">// 04</span><span class="q">Можно только дашборд?</span><span class="ico"></span></summary><div class="a">Если источники настроены — да. Иначе построим всю инфраструктуру, иначе дашборды покажут «фантомы».</div></details>
+      <details><summary><span class="ix">// 05</span><span class="q">Кто поддерживает после запуска?</span><span class="ico"></span></summary><div class="a">Передаём документацию, обучаем команду. Если нет аналитика — берём на сопровождение от 15 000 ₽/мес.</div></details>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section cta-final" id="contact">
+  <div class="container cta-wrap">
+    <div class="cta-copy reveal-left">
+      <div class="kicker" data-typew>05 / ОБСУДИТЬ ПРОЕКТ</div>
+      <h2>Начните <span class="acid">принимать решения по данным,</span><br>а не по интуиции<span class="cursor"></span></h2>
+      <p>Бесплатный аудит текущей аналитики и план оптимизации — за 24 часа.</p>
+      <ul class="cta-bullets stagger"><li>Ответим в течение часа</li><li>Найдём дыры в текущем трекинге</li><li>Оценим потери от атрибуции</li><li>Дадим вилку бюджета</li></ul>
+    </div>
+    <div class="reveal-right"><vexon-form options="Базовая настройка GA4 / Метрика|Сквозная аналитика|Коллтрекинг|BI-дашборды|Custom-решение / DWH"></vexon-form></div>
+  </div>
+</section>
+
+</main>
+
+<vexon-footer></vexon-footer>
+<vexon-tg></vexon-tg>
+
+<script src="../assets/js/components.js" defer></script>
+<script src="../assets/js/animations.js" defer></script>
+<script src="../assets/js/effects.js" defer></script>
+<script src="../assets/js/main.js" defer></script>
+<script>
+window.VEXON = window.VEXON || {};
+window.VEXON.pageInit = () => {
+  /* simulate live numbers ticking */
+  const fmt = n => n.toLocaleString('ru-RU');
+  let clicks = 2847, events = 12480, leads = 186, revenue = 4200000;
+  const elClicks = document.getElementById('df-clicks');
+  const elEvents = document.getElementById('df-events');
+  const elLeads = document.getElementById('df-leads');
+  const elRevenue = document.getElementById('df-revenue');
+
+  setInterval(() => {
+    clicks += Math.floor(Math.random() * 8) + 1;
+    events += Math.floor(Math.random() * 30) + 5;
+    if (Math.random() > 0.65) leads += 1;
+    revenue += Math.floor(Math.random() * 24000);
+
+    if (elClicks) elClicks.textContent = fmt(clicks);
+    if (elEvents) elEvents.textContent = fmt(events);
+    if (elLeads) elLeads.textContent = fmt(leads);
+    if (elRevenue) elRevenue.textContent = (revenue / 1000000).toFixed(1) + 'M ₽';
+  }, 1400);
+
+  /* re-position flow paths based on actual nodes (for responsive) */
+  function positionPaths() {
+    const wrap = document.querySelector('.dataflow-body');
+    const lines = document.querySelector('.df-lines svg');
+    if (!wrap || !lines) return;
+    const nodes = document.querySelectorAll('.df-node');
+    if (nodes.length < 4) return;
+    const wrapRect = wrap.getBoundingClientRect();
+    const centers = [...nodes].map(n => {
+      const r = n.getBoundingClientRect();
+      return { x: (r.left + r.width / 2 - wrapRect.left), y: (r.top + r.height / 2 - wrapRect.top) };
+    });
+    lines.setAttribute('viewBox', `0 0 ${wrapRect.width} ${wrapRect.height}`);
+    const paths = [document.getElementById('dfPath1'), document.getElementById('dfPath2'), document.getElementById('dfPath3')];
+    for (let i = 0; i < paths.length; i++) {
+      if (!paths[i]) continue;
+      const a = centers[i], b = centers[i + 1];
+      const mid = (a.x + b.x) / 2;
+      paths[i].setAttribute('d', `M ${a.x} ${a.y} Q ${mid} ${a.y} ${b.x} ${b.y}`);
+    }
+  }
+  positionPaths();
+  window.addEventListener('resize', positionPaths);
+  setTimeout(positionPaths, 200);
+};
+</script>
+</body>
+</html>

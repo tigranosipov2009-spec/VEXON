@@ -1,0 +1,182 @@
+/* ==========================================================
+   ANALYTICS — data flow diagram + live dashboard
+   ========================================================== */
+
+.dataflow {
+  background: var(--bg-dim);
+  border: 1px solid var(--line-3);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.5);
+  position: relative;
+}
+.dataflow-bar {
+  padding: 11px 14px;
+  background: linear-gradient(to bottom, #1f2020, #1a1b1b);
+  border-bottom: 1px solid var(--line-3);
+  display: flex; align-items: center; gap: 12px;
+}
+.dataflow-bar .dots { display: flex; gap: 8px; }
+.dataflow-bar .dots i { width: 12px; height: 12px; border-radius: 50%; display: block; }
+.dataflow-bar .dots i:nth-child(1) { background: var(--mac-red); }
+.dataflow-bar .dots i:nth-child(2) { background: var(--mac-yellow); }
+.dataflow-bar .dots i:nth-child(3) { background: var(--mac-green); }
+.dataflow-bar .ttl { flex: 1; text-align: center; font-family: var(--mono); font-size: 11px; color: var(--ink-3); }
+.dataflow-bar .ttl b { color: var(--ink); }
+.dataflow-bar .live {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--mono); font-size: 10px; color: var(--acid);
+}
+.dataflow-bar .live::before {
+  content: ''; width: 6px; height: 6px;
+  background: var(--acid); border-radius: 50%;
+  animation: pulse 1.4s ease-in-out infinite;
+  box-shadow: 0 0 8px var(--acid);
+}
+
+.dataflow-body { padding: 28px; position: relative; min-height: 380px; }
+
+/* nodes */
+.df-nodes {
+  position: relative;
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  z-index: 2;
+}
+@media (max-width: 600px) { .df-nodes { grid-template-columns: 1fr; gap: 16px; } }
+
+.df-node {
+  background: var(--surface);
+  border: 1px solid var(--line-3);
+  padding: 18px 14px;
+  position: relative;
+  z-index: 2;
+  margin: 0 8px;
+  transition: border-color 0.3s var(--ease), transform 0.3s var(--ease);
+}
+.df-node:hover { border-color: var(--acid); transform: translateY(-3px); }
+.df-node .ico {
+  width: 36px; height: 36px;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid var(--acid); color: var(--acid);
+  font-family: var(--mono); font-size: 14px; font-weight: 700;
+  margin-bottom: 10px;
+}
+.df-node .lbl {
+  font-family: var(--mono); font-size: 10px;
+  color: var(--ink-3); letter-spacing: 0.06em;
+  text-transform: uppercase; margin-bottom: 6px;
+}
+.df-node .name {
+  font-size: 16px; font-weight: 600;
+  color: var(--ink); letter-spacing: -0.015em;
+  margin-bottom: 4px;
+}
+.df-node .meta { font-family: var(--mono); font-size: 11px; color: var(--ink-3); }
+.df-node .meta b { color: var(--acid); }
+.df-node .pulse {
+  position: absolute; top: 14px; right: 14px;
+  width: 8px; height: 8px; background: var(--acid);
+  border-radius: 50%;
+  animation: pulse 1.4s ease-in-out infinite;
+  box-shadow: 0 0 10px var(--acid);
+}
+
+/* SVG flow lines */
+.df-lines {
+  position: absolute; inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+.df-lines svg { width: 100%; height: 100%; }
+.df-lines path {
+  fill: none;
+  stroke: var(--acid);
+  stroke-width: 2;
+  stroke-dasharray: 6 6;
+  opacity: 0.35;
+  animation: dataFlowMove 1.4s linear infinite;
+}
+@keyframes dataFlowMove {
+  to { stroke-dashoffset: -24; }
+}
+
+/* travelling dots */
+.df-particle {
+  fill: var(--acid);
+  filter: drop-shadow(0 0 6px var(--acid));
+}
+
+/* live numbers strip */
+.df-live {
+  display: grid; grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  margin-top: 20px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+@media (max-width: 768px) { .df-live { grid-template-columns: repeat(2, 1fr); } }
+.df-stat {
+  font-family: var(--mono);
+  display: flex; flex-direction: column; gap: 4px;
+}
+.df-stat .k { font-size: 9px; color: var(--ink-3); letter-spacing: 0.06em; text-transform: uppercase; }
+.df-stat .v {
+  font-size: 22px; font-weight: 700;
+  color: var(--acid); letter-spacing: -0.025em;
+  line-height: 1;
+}
+.df-stat .d {
+  font-size: 10px; color: var(--ink-3);
+  letter-spacing: 0.04em;
+}
+
+/* source matrix */
+.source-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border: 1px solid var(--line);
+}
+@media (max-width: 768px) { .source-grid { grid-template-columns: repeat(2, 1fr); } }
+.source-cell {
+  padding: 22px 18px;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: var(--bg);
+  position: relative;
+  transition: background 0.2s var(--ease);
+  overflow: hidden;
+}
+.source-cell:hover { background: var(--surface); }
+.source-cell:nth-child(4n) { border-right: none; }
+.source-cell .src {
+  font-family: var(--mono); font-size: 11px;
+  color: var(--acid); letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.source-cell .conv {
+  font-size: 28px; font-weight: 700;
+  letter-spacing: -0.03em; color: var(--ink);
+  line-height: 1;
+}
+.source-cell .conv-lbl {
+  font-family: var(--mono); font-size: 10px;
+  color: var(--ink-3); letter-spacing: 0.06em;
+  text-transform: uppercase; margin-top: 4px;
+}
+.source-cell .barchart {
+  margin-top: 14px;
+  height: 32px;
+  display: flex; align-items: flex-end;
+  gap: 3px;
+}
+.source-cell .barchart i {
+  flex: 1;
+  background: var(--acid);
+  opacity: 0.5;
+  height: 0;
+  transition: height 0.8s var(--ease);
+  box-shadow: 0 0 4px var(--acid-trace);
+}
+.source-cell .barchart i.peak { opacity: 1; }
